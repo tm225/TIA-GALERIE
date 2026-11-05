@@ -204,7 +204,7 @@ fun App(act: FragmentActivity) {
                     }
                 }
                 2 -> {
-                    if (vault.isEmpty()) Text("Le coffre est vide. Ouvre une photo et touche « Coffre » pour la cacher ici. Elle disparaît de la galerie et ne s'ouvre qu'avec ton empreinte ou ton code.", Modifier.padding(20.dp), color = Color(0xFFC9BFE6))
+                    if (vault.isEmpty()) Text("Le coffre est vide. Ouvre une photo et touche « Coffre » pour la cacher ici. Elle disparaît de la galerie et ne s'ouvre qu'avec ton empreinte ou le code du téléphone.", Modifier.padding(20.dp), color = Color(0xFFC9BFE6))
                     MediaGrid(vault, cols, anim, favs, loader) { i -> idx = i; open = true }
                 }
                 else -> Column(Modifier.verticalScroll(rememberScrollState()).padding(start = 20.dp, end = 20.dp, bottom = 130.dp)) {
@@ -303,6 +303,7 @@ fun Editor(m: Media, onDone: (Boolean) -> Unit) {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Viewer(list: List<Media>, start: Int, loader: ImageLoader, cfg: Cfg, mode: Int, favs: Set<String>, acts: Acts, onClose: () -> Unit) {
     val pager = rememberPagerState(start) { list.size }
